@@ -1,5 +1,13 @@
 #!/usr/bin/python
 
+#-----------------------------------------------------------------------------
+#   Copyright (c) 2008-2015, David P. D. Moss. All rights reserved.
+#
+#   Released under the BSD license. See the LICENSE file for details.
+#
+#	Fork from https://github.com/DaKnOb/mwhois
+#-----------------------------------------------------------------------------
+"""Common code shared between various netaddr sub modules"""
 
 import socket, os, re
 from time import strftime
@@ -8,7 +16,7 @@ from netaddr import IPAddress, IPNetwork
 LISTEN_ADDRESS	=	"0.0.0.0"
 LISTEN_PORT		=	43
 MAX_QUERY_SIZE	=	128
-LOGFILE			=	"/var/log/mwhois.log"
+LOGFILE			=	"/var/log/mwhois/mwhois.log"
 
 n				=	"\r\n"
 os.system("mkdir -p db/ipv4")
@@ -78,20 +86,20 @@ while True:
 		log = log + query.replace("\r\n", "").replace("\n", "") + " - "
 		query = sanitizeQuery(query)	
 
-		rsp = 		"# +-----------------------------------+" + n
-		rsp = rsp + "# |             DaKnObNET             |" + n
-		rsp = rsp + "# +-----------------------------------+" + n
-		rsp = rsp + "# |  This query was served by mwhois  |" + n
-		rsp = rsp + "# +-----------------------------------+" + n
+		rsp = 		"# +-------------------------------------+" + n
+		rsp = rsp + "# |       Nova Poshta Whois System      |" + n
+		rsp = rsp + "# +-------------------------------------+" + n
+		rsp = rsp + "# | This query was served by lyhopoj.j  |" + n
+		rsp = rsp + "# +-------------------------------------+" + n
 		rsp = rsp + n
 
 		if(isIP(query)):
 			# WHOIS IPv4
 			log = log + "IPv4"
 			ipdb = os.listdir("db/ipv4/")
+			found = False
 			for ipe in ipdb:
 				ipe = ipe.replace("-", "/")
-				found = False
 				if(isIPinCIDR(query, ipe)):
 					dd = open("db/ipv4/" + ipe.replace("/", "-"), "r")
 					rsp = rsp + dd.read()

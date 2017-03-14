@@ -1,0 +1,21 @@
+##########################################################
+####### Налаштування DB для підключення до IPPLAN ########
+##########################################################
+
+$config{host_ipplan} = 'ipplan.np.ua';
+$config{dbtype_ipplan} = 'mysql';
+$config{dbcharset_ipplan} = 'latin1';
+$config{dbname_ipplan} = 'ipplan';
+$config{user_ipplan} = 'genconf';
+$config{pass_ipplan} = 'uh5roeSh';
+
+##########################################################
+######## Налаштування DB для підключення до IPNP #########
+##########################################################
+
+$config{host_ipnp} = 'us.np.ua';
+$config{dbtype_ipnp} = 'mysql';
+$config{dbcharset_ipnp} = 'utf8';
+$config{dbname_ipnp} = 'genconf';
+$config{user_ipnp} = 'genconf';
+$config{pass_ipnp} = 'uh5roeSh';
